@@ -69,9 +69,8 @@ def main():
 
     # ------------------------------------------------------------
     # 5) SAVE
-    # ------------------------------------------------------------
-    save_to_duckdb(gold, "gold_cobranza", "silver")
-    save_to_duckdb(gold, "gold_cobranza", "gold")
+    save_to_duckdb(canales, "canales", "silver") # Guardamos canales procesado
+    save_to_duckdb(gold, "dataset_final_modelo", "gold") # El dataset listo para ML
 
     spark.stop()
 

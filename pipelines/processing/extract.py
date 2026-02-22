@@ -1,18 +1,13 @@
+# pipelines/processing/extract.py
 import duckdb
-from pyspark.sql import SparkSession
 
 DB_PATH = "database/analytics.duckdb"
 
-def read_table(spack: SparkSession, table_name: str):
-    
+
+def read_table(spark, table_name: str, schema="raw"):
     con = duckdb.connect(DB_PATH)
-
-    df_pd = con.execute(
-        f"SELECT * FROM raw.{table_name}"
-    ).fetchdf()
-
+    # Usamos arrow para una transferencia de datos mucho más veloz y ligera
+    df_arrow = con.execute(f"SELECT * FROM {schema}.{table_name}").fetch_arrow_table()
     con.close()
 
-    df_spark = spack.createDataFrame(df_pd)
-
-    return df_spark
+    return spark.createDataFrame(df_arrow.to_pandas())
