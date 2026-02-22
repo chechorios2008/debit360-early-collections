@@ -1,0 +1,123 @@
+############################################
+# Python / Bytecode
+############################################
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+*.pyd
+
+############################################
+# Virtual Environments
+############################################
+.venv/
+venv/
+ENV/
+env/
+.conda/
+.venv311/
+pip-wheel-metadata/
+
+############################################
+# Packaging / Build
+############################################
+build/
+dist/
+*.egg-info/
+.eggs/
+pip-log.txt
+
+############################################
+# Jupyter / Notebooks
+############################################
+.ipynb_checkpoints/
+*.nbconvert.ipynb
+profile_default/
+.ipython/
+
+############################################
+# MLflow / Model Artifacts
+############################################
+mlruns/
+mlartifacts/
+artifacts/models/
+artifacts/reports/
+*.pkl
+*.joblib
+*.onnx
+
+
+############################################
+# Data - NO versionar datos
+############################################
+# Ignorar todo dentro de data
+data/**
+
+# Permitir conservar estructura de carpetas con .gitkeep
+!data/**/
+!data/**/.gitkeep
+
+# DuckDB / Bases locales (no versionar)
+*.duckdb
+database/
+
+############################################
+# Logs / Temp / Cache
+############################################
+logs/
+*.log
+tmp/
+temp/
+.cache/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+*.tmp
+*.bak
+
+############################################
+# Environment variables / secrets
+############################################
+.env
+.env.*
+!.env.example
+
+############################################
+# OS / Editor / IDE
+############################################
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# VS Code
+.vscode/
+!.vscode/extensions.json
+!.vscode/settings.json
+
+# PyCharm / JetBrains
+.idea/
+
+############################################
+# Power BI / BI artifacts (si aplicara)
+############################################
+*.pbix
+*.pbit
+*.pbip
+*.pbi
+
+############################################
+# Spark local artifacts
+############################################
+spark-warehouse/
+metastore_db/
+derby.log
+
+############################################
+# Docker / Compose (si luego lo agregas)
+############################################
+*.pid
+*.sock
