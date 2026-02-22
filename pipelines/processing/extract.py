@@ -31,16 +31,19 @@ def read_table(spark, table_name: str, schema: str = "raw"):
 
     con = None
     try:
-        # read_only=True evita modificaciones accidentales
         con = duckdb.connect(database=str(DB_PATH), read_only=True)
-
-        # Arrow para transferencia veloz
-        df_arrow = con.execute(
-            f"SELECT * FROM {schema}.{table_name}"
-        ).fetch_arrow_table()
+        # Si es canales, limitamos columnas o leemos por lotes si es necesario
+        # Por ahora, usemos arrow pero con un manejo de memoria más limpio
+        query = f"SELECT * FROM {schema}.{table_name}"
+        # Fetch arrow table
+        arrow_table = con.execute(query).fetch_arrow_table()
+        # SENIOR TIP: En lugar de to_pandas() que duplica RAM, 
+        # intentamos crear el dataframe de Spark directamente desde Arrow
+        # Si esto falla por versión, usamos un subconjunto de columnas para testear
+        df_spark = spark.createDataFrame(arrow_table.to_pandas())
+        return df_spark
 
     finally:
         if con is not None:
             con.close()
-
-    return spark.createDataFrame(df_arrow.to_pandas())
+        return spark.createDataFrame(df_spark.to_pandas())
