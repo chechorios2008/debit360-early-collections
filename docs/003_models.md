@@ -38,3 +38,6 @@ Objetivo de Negocio: Este enfoque permite al modelo identificar con precisión e
 
 5. Evaluación de Estabilidad
 La métrica de éxito principal es el AUC. Se considera un modelo exitoso si la diferencia de AUC entre el set de Test y el OOT es mínima, validando que el modelo es capaz de generalizar y mantener su poder discriminatorio en el tiempo.
+
+# Para la visualización del rendimiento en MLFLOW.
+mlflow ui --port 5000
