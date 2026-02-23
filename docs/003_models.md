@@ -41,3 +41,13 @@ La métrica de éxito principal es el AUC. Se considera un modelo exitoso si la 
 
 # Para la visualización del rendimiento en MLFLOW.
 mlflow ui --port 5000
+
+# Concluión con el entrenamiento inicial:
+Para la etapa inicial del MVP la corrida que maximiza AUC en OOT (≈ 0.7721), porque el objetivo es que el modelo generalice fuera del periodo de entrenamiento; OOT es la validación más cercana al comportamiento futuro. Además, reviso métricas complementarias (KS/AP) y métricas operativas (precision/recall) para asegurar que el desempeño sea útil en decisión de cobranza.
+
+- El modelo con mayor auc_oot porque prioriza estabilidad temporal. Luego reviso:
+
+que auc_test no sea muy diferente de auc_oot (estabilidad),
+ks_oot y ap_oot como métricas complementarias,
+matriz de confusión y precision/recall en OOT al umbral (impacto operativo),
+artifacts de leakage para evitar fuga de información.
