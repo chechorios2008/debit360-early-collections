@@ -96,7 +96,6 @@ Este repositorio usa **dos archivos**:
 
 ### 1) Crear y activar entorno virtual (Python 3.11)
 
-cd C:\Users\serrios\01_prueba_analitico_4\op_cobro
 py -3.11 -m venv .venv
 .\.venv\Scripts\activate
 python --version
